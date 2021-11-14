@@ -1,0 +1,36 @@
+version: "3.3"
+
+services:
+  core:
+    container_name: core
+    build: 
+      context: .
+      dockerfile: images/core/Dockerfile
+    command:
+      - roscore
+
+  talker:
+    container_name: talker
+    build:
+      context: .
+      dockerfile: images/talker/Dockerfile
+    environment:
+      - "ROS_HOSTNAME=talker"
+      - "ROS_MASTER_URI=http://core:11311"
+    command: rosrun roscpp_tutorials talker
+
+  listener:
+    container_name: listener
+    build: 
+      context: .
+      dockerfile: images/listener/Dockerfile
+    environment:
+      - "ROS_HOSTNAME=listener"
+      - "ROS_MASTER_URI=http://core:11311"
+    command: rosrun roscpp_tutorials listener
+
+  resolvable:
+    image: mgood/resolvable
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+      - /etc/resolv.conf:/tmp/resolv.conf
