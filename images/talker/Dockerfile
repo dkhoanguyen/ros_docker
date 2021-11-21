@@ -6,3 +6,5 @@ RUN apt-get update && apt-get install -y \
     ros-noetic-ros-tutorials \
     ros-noetic-common-tutorials \
     && rm -rf /var/lib/apt/lists/*
+
+COPY resolve_hostname.sh /resolve_hostname.sh

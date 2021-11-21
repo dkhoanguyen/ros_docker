@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.0"
 
 services:
   core:
@@ -8,6 +8,9 @@ services:
       dockerfile: images/core/Dockerfile
     command:
       - roscore
+    networks:
+      ros:
+        ipv4_address: 172.22.0.2
 
   talker:
     container_name: talker
@@ -16,8 +19,14 @@ services:
       dockerfile: images/talker/Dockerfile
     environment:
       - "ROS_HOSTNAME=talker"
-      - "ROS_MASTER_URI=http://core:11311"
+      - "ROS_IP=172.22.0.3"
+      - "ROS_MASTER_URI=http://172.22.0.1:11311"
     command: rosrun roscpp_tutorials talker
+    volumes:
+      - /etc/hosts:/tmp/hosts
+    networks:
+      ros:
+        ipv4_address: 172.22.0.3
 
   listener:
     container_name: listener
@@ -26,11 +35,19 @@ services:
       dockerfile: images/listener/Dockerfile
     environment:
       - "ROS_HOSTNAME=listener"
+      - "ROS_IP=172.22.0.4"
       - "ROS_MASTER_URI=http://core:11311"
     command: rosrun roscpp_tutorials listener
-
-  resolvable:
-    image: mgood/resolvable
     volumes:
-      - /var/run/docker.sock:/tmp/docker.sock
-      - /etc/resolv.conf:/tmp/resolv.conf
+      - /etc/hosts:/tmp/hosts
+    networks:
+      ros:
+        ipv4_address: 172.22.0.4
+
+networks:
+  ros:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.22.0.0/16
+          gateway: 172.22.0.1
