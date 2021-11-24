@@ -1,5 +1,5 @@
 # This is a Dockerfile for ros:ros-tutorials
-FROM ros:noetic-ros-base
+FROM ros:noetic-ros-base AS ros_base
 
 # install ros tutorials packages
 RUN apt-get update && apt-get install -y \
@@ -7,4 +7,6 @@ RUN apt-get update && apt-get install -y \
     ros-noetic-common-tutorials \
     && rm -rf /var/lib/apt/lists/*
 
+FROM ros_base
 COPY resolve_hostname.sh /resolve_hostname.sh
+CMD ["bash","-c","/resolve_hostname.sh && rosrun roscpp_tutorials listener"]

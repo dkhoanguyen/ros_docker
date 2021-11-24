@@ -6,8 +6,6 @@ services:
     build: 
       context: .
       dockerfile: images/core/Dockerfile
-    command:
-      - roscore
     networks:
       ros:
         ipv4_address: 172.22.0.2
@@ -20,10 +18,11 @@ services:
     environment:
       - "ROS_HOSTNAME=talker"
       - "ROS_IP=172.22.0.3"
-      - "ROS_MASTER_URI=http://172.22.0.1:11311"
-    command: rosrun roscpp_tutorials talker
+      - "ROS_MASTER_URI=http://core:11311"
     volumes:
       - /etc/hosts:/tmp/hosts
+    depends_on:
+      - core
     networks:
       ros:
         ipv4_address: 172.22.0.3
@@ -37,9 +36,10 @@ services:
       - "ROS_HOSTNAME=listener"
       - "ROS_IP=172.22.0.4"
       - "ROS_MASTER_URI=http://core:11311"
-    command: rosrun roscpp_tutorials listener
     volumes:
       - /etc/hosts:/tmp/hosts
+    depends_on:
+      - core
     networks:
       ros:
         ipv4_address: 172.22.0.4
