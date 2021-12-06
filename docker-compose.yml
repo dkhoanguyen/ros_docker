@@ -6,6 +6,7 @@ services:
     build: 
       context: .
       dockerfile: images/core/Dockerfile
+    restart:  always
     networks:
       ros:
         ipv4_address: 172.22.0.2
@@ -19,6 +20,7 @@ services:
       - "ROS_HOSTNAME=talker"
       - "ROS_IP=172.22.0.3"
       - "ROS_MASTER_URI=http://core:11311"
+      - "TARGET_REPO=https://github.com/dkhoanguyen/todo-app.git"
     volumes:
       - /etc/hosts:/tmp/hosts
     depends_on:

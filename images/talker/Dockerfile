@@ -9,4 +9,7 @@ RUN apt-get update && apt-get install -y \
 
 FROM ros_base
 COPY resolve_hostname.sh /resolve_hostname.sh
+RUN apt update && apt install -y git
+RUN git clone https://github.com/dkhoanguyen/todo-app.git
+
 CMD ["bash","-c","/resolve_hostname.sh && rosrun roscpp_tutorials talker"]
