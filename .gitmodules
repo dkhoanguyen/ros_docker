@@ -1,0 +1,3 @@
+[submodule "src/go/ros-supervisor"]
+	path = src/go/ros-supervisor
+	url = git@github.com:dkhoanguyen/ros-supervisor.git
