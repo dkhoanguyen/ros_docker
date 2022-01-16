@@ -1,7 +1,7 @@
 # This is a Dockerfile for ros:ros-tutorials
-FROM ros:noetic-ros-base-buster@sha256:20d0f2c349578d271200aea73e741c8b718409786a372a03b04be558631f9d9b AS ros_base
+FROM ros:kinetic-ros-base-buster AS ros_base
 
-RUN apt update && apt install -y ros-noetic-rosbridge-suite
+RUN apt update && apt install -y ros-kinetic-rosbridge-suite
 
 FROM ros_base
 COPY resolve_hostname.sh /resolve_hostname.sh
