@@ -1,5 +1,5 @@
 # This is a Dockerfile for ros:ros-tutorials
-FROM ros:kinetic-ros-base-buster AS ros_base
+FROM arm32v7/ros:melodic-ros-base AS ros_base
 
 RUN apt update && apt install -y ros-kinetic-rosbridge-suite
 
