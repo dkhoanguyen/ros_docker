@@ -1,9 +1,8 @@
 # This is a Dockerfile for ros:ros-tutorials
 FROM arm32v7/ros:melodic-ros-base AS ros_base
 
-RUN apt update && apt install -y ros-kinetic-rosbridge-suite
+RUN apt update && apt install -y ros-melodic-rosbridge-suite
 
 FROM ros_base
-COPY resolve_hostname.sh /resolve_hostname.sh
 EXPOSE 9090
-CMD ["bash","-c","/resolve_hostname.sh && roslaunch rosbridge_server rosbridge_websocket.launch"]
+CMD ["bash","-c","roslaunch rosbridge_server rosbridge_websocket.launch"]
