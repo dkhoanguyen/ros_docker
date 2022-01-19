@@ -1,5 +1,5 @@
 # This is a Dockerfile for ros:ros-tutorials
-FROM ros:kinetic-ros-base-buster AS ros_base
+FROM arm32v7/ros:melodic-ros-base AS ros_base
 
 # install ros tutorials packages
 RUN apt-get update && apt-get install -y \
