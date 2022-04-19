@@ -11,16 +11,16 @@ services:
       ros:
         ipv4_address: 172.22.0.2
 
-  talker:
-    container_name: talker
+  dobot_magician_driver:
+    container_name: dobot_magician_driver
     build:
       context: .
-      dockerfile: images/talker/Dockerfile
+      dockerfile: images/dobot-magician-driver/Dockerfile
     environment:
-      - "ROS_HOSTNAME=talker"
+      - "ROS_HOSTNAME=dobot_magician_driver"
       - "ROS_IP=172.22.0.3"
       - "ROS_MASTER_URI=http://core:11311"
-      - "TARGET_REPO=https://github.com/dkhoanguyen/todo-app.git"
+      - "TARGET_REPO=https://github.com/gapaul/dobot_magician_driver"
     volumes:
       - /etc/hosts:/tmp/hosts
     depends_on:
@@ -28,24 +28,6 @@ services:
     networks:
       ros:
         ipv4_address: 172.22.0.3
-
-  listener:
-    container_name: listener
-    build: 
-      context: .
-      dockerfile: images/listener/Dockerfile
-    environment:
-      - "ROS_HOSTNAME=listener"
-      - "ROS_IP=172.22.0.4"
-      - "ROS_MASTER_URI=http://core:11311"
-    volumes:
-      - /etc/hosts:/tmp/hosts
-    depends_on:
-      - core
-    networks:
-      ros:
-        ipv4_address: 172.22.0.4
-
 networks:
   ros:
     driver: bridge
