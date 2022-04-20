@@ -5,8 +5,6 @@ RUN apt-get update && apt-get install -y \
     ros-melodic-ros-tutorials \
     ros-melodic-common-tutorials \
     && rm -rf /var/lib/apt/lists/*
-# install tf2
-RUN apt install -y ros-melodic-tf ros-melodic-tf2-tools
 
 # install libserial dependencies
 RUN apt update
@@ -22,6 +20,9 @@ RUN git clone https://github.com/crayzeewulf/libserial && \
     make install
 
 RUN apt install -y libserialport0
+
+# install tf2
+RUN apt install -y ros-melodic-tf ros-melodic-tf2-tools
 
 RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 RUN bin/bash -c "source /opt/ros/melodic/setup.bash && \
