@@ -39,4 +39,4 @@ RUN bin/bash -c "source /opt/ros/melodic/setup.bash && \
 # Copy udev file
 RUN cp ~/catkin_ws/src/dobot_magician_driver/supporting/43-dobot_magician.rules /lib/udev/rules.d/
 
-CMD ["tail", "-f", "/dev/null"]
+CMD ["bash"."-c","trap : TERM INT; sleep infinity & wait"]
