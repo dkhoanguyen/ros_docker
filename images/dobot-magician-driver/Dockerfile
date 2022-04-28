@@ -1,11 +1,5 @@
 FROM arm32v7/ros:melodic-ros-base AS ros_base
 
-# install ros tutorials packages
-RUN apt-get update && apt-get install -y \
-    ros-melodic-ros-tutorials \
-    ros-melodic-common-tutorials \
-    && rm -rf /var/lib/apt/lists/*
-
 # install libserial dependencies
 RUN apt update
 RUN apt install -y g++ git autogen autoconf build-essential cmake graphviz-dev \
@@ -33,7 +27,9 @@ RUN bin/bash -c "source /opt/ros/melodic/setup.bash && \
                     catkin_make && \
                     cd src/ && \
                     git clone https://github.com/gapaul/dobot_magician_driver && \
-                    cd .. && \
+                    cd dobot_magician_driver && \
+                    git checkout improvement/improve-driver-robustness-to-hardware-changes && \
+                    cd ../.. && \
                     catkin_make"
 
 CMD ["bash","-c","source ~/catkin_ws/devel/setup.bash && roslaunch dobot_magician_driver dobot_magician.launch"]
