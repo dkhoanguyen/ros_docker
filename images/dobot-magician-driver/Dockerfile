@@ -13,7 +13,7 @@ RUN git clone https://github.com/crayzeewulf/libserial && \
     cd build && \
     make install
 
-RUN apt install -y libserialport0
+RUN apt install -y libserialport0 libusb-1.0-0-dev
 
 # install tf2
 RUN apt install -y ros-melodic-tf ros-melodic-tf2-tools
