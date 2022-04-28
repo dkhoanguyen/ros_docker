@@ -36,4 +36,4 @@ RUN bin/bash -c "source /opt/ros/melodic/setup.bash && \
                     cd .. && \
                     catkin_make"
 
-CMD ["bash","-c","tail -f /dev/null"]
+CMD ["bash","-c","source ~/catkin_ws/devel/setup.bash && roslaunch dobot_magician_driver dobot_magician.launch"]
