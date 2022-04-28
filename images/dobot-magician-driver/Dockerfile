@@ -1,5 +1,7 @@
 FROM arm32v7/ros:melodic-ros-base AS ros_base
 
+ARG BRANCH
+
 # install libserial dependencies
 RUN apt update
 RUN apt install -y g++ git autogen autoconf build-essential cmake graphviz-dev \
@@ -19,6 +21,7 @@ RUN apt install -y libserialport0 libusb-1.0-0-dev
 RUN apt install -y ros-melodic-tf ros-melodic-tf2-tools
 
 RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+RUN bin/bash -c "echo $BRANCH"
 RUN bin/bash -c "source /opt/ros/melodic/setup.bash && \
                     mkdir -p ~/catkin_ws/src && \
                     cd ~/catkin_ws/src && \
@@ -28,7 +31,7 @@ RUN bin/bash -c "source /opt/ros/melodic/setup.bash && \
                     cd src/ && \
                     git clone https://github.com/gapaul/dobot_magician_driver && \
                     cd dobot_magician_driver && \
-                    git checkout improvement/improve-driver-robustness-to-hardware-changes && \
+                    git checkout $BRANCH && \
                     cd ../.. && \
                     catkin_make"
 
