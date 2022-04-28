@@ -31,7 +31,7 @@ RUN bin/bash -c "source /opt/ros/melodic/setup.bash && \
                     cd src/ && \
                     git clone https://github.com/gapaul/dobot_magician_driver && \
                     cd dobot_magician_driver && \
-                    git checkout $BRANCH && \
+                    git checkout improvement/improve-driver-robustness-to-hardware-changes && \
                     cd ../.. && \
                     catkin_make"
 

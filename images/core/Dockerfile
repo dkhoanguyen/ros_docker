@@ -5,4 +5,5 @@ RUN apt update && apt install -y ros-melodic-rosbridge-suite
 
 FROM ros_base
 EXPOSE 9090
+EXPOSE 11311
 CMD ["bash","-c","roslaunch rosbridge_server rosbridge_websocket.launch"]
