@@ -16,5 +16,5 @@ core:
 services:
   dobot_magician_driver:
     - url: https://github.com/gapaul/dobot_magician_driver
-      branch: develop
+      branch: improvement/improve-driver-robustness-to-hardware-changes
       current_commit:

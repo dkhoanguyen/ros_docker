@@ -36,7 +36,4 @@ RUN bin/bash -c "source /opt/ros/melodic/setup.bash && \
                     cd .. && \
                     catkin_make"
 
-# Copy udev file
-RUN cp ~/catkin_ws/src/dobot_magician_driver/supporting/43-dobot_magician.rules /lib/udev/rules.d/
-
-CMD ["bash","-c","tail -f /dev/null"]
+CMD ["bash","-c","roslaunch dobot_magician_driver dobot_magician.launch"]
