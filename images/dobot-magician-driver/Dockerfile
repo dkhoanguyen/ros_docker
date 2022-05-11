@@ -18,11 +18,11 @@ RUN git clone https://github.com/crayzeewulf/libserial && \
 RUN apt install -y libserialport0 libusb-1.0-0-dev
 
 # install tf2
-RUN apt install -y ros-melodic-tf ros-melodic-tf2-tools
+RUN apt install -y ros-noetic-tf ros-noetic-tf2-tools
 
-RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 RUN bin/bash -c "echo $BRANCH"
-RUN bin/bash -c "source /opt/ros/melodic/setup.bash && \
+RUN bin/bash -c "source /opt/ros/noetic/setup.bash && \
                     mkdir -p ~/catkin_ws/src && \
                     cd ~/catkin_ws/src && \
                     catkin_init_workspace && \
