@@ -1,7 +1,7 @@
 # This is a Dockerfile for ros:ros-tutorials
 FROM ros:noetic-ros-base AS ros_base
 
-RUN apt update && apt install -y ros-melodic-rosbridge-suite
+RUN apt update && apt install -y ros-noetic-rosbridge-suite
 
 FROM ros_base
 EXPOSE 9090
