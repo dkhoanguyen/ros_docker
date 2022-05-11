@@ -3,8 +3,8 @@ FROM ros:noetic-ros-base AS ros_base
 
 # install ros tutorials packages
 RUN apt-get update && apt-get install -y \
-    ros-melodic-ros-tutorials \
-    ros-melodic-common-tutorials \
+    ros-noetic-ros-tutorials \
+    ros-noetic-common-tutorials \
     && rm -rf /var/lib/apt/lists/*
 
 FROM ros_base
