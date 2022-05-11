@@ -11,4 +11,4 @@ FROM ros_base
 RUN apt update && apt install -y git
 RUN git clone https://github.com/dkhoanguyen/todo-app.git
 
-CMD ["bash","-c","rosrun roscpp_tutorials talker"]
+CMD ["bash","-c","rosrun roscpp_tutorials listener"]

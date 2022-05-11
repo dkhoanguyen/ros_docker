@@ -1,4 +1,4 @@
-FROM arm32v7/ros:melodic-ros-base AS ros_base
+FROM ros:noetic-ros-base AS ros_base
 
 ARG BRANCH
 
