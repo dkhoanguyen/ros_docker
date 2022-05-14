@@ -18,3 +18,13 @@ services:
     - url: https://github.com/gapaul/dobot_magician_driver
       branch: improvement/improve-driver-robustness-to-hardware-changes
       current_commit:
+  
+  talker:
+    - url: https://github.com/dkhoanguyen/simple_ros_docker_test
+      branch: master
+      current_commit:
+  
+  listener:
+    - url: https://github.com/dkhoanguyen/simple_ros_docker_test
+      branch: master
+      current_commit:
