@@ -10,6 +10,7 @@ services:
     ports:
       - 11311:11311
       - 9090:9090
+    tty: true
     networks:
       ros:
         ipv4_address: 172.22.0.2
@@ -36,6 +37,7 @@ services:
         limits:
           cpus: '0.5'
           memory: 100M
+    tty: true
     networks:
       ros:
         ipv4_address: 172.22.0.3
@@ -51,6 +53,7 @@ services:
       - "ROS_MASTER_URI=http://core:11311"
     depends_on:
       - core
+    tty: true
     networks:
       ros:
         ipv4_address: 172.22.0.4
@@ -66,6 +69,7 @@ services:
       - "ROS_MASTER_URI=http://core:11311"
     depends_on:
       - core
+    tty: true
     networks:
       ros:
         ipv4_address: 172.22.0.5
