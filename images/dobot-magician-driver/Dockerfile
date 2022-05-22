@@ -20,12 +20,11 @@ RUN apt install -y libserialport0 libusb-1.0-0-dev
 # install tf2
 RUN apt install -y ros-noetic-tf ros-noetic-tf2-tools
 
+# Prepare workspace
+RUN mkdir -p ~/catkin_ws/src
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 RUN bin/bash -c "echo $BRANCH"
 RUN bin/bash -c "source /opt/ros/noetic/setup.bash && \
-                    mkdir -p ~/catkin_ws/src && \
-                    cd ~/catkin_ws/src && \
-                    catkin_init_workspace && \
                     cd ~/catkin_ws/ && \
                     catkin_make && \
                     cd src/ && \
@@ -35,4 +34,6 @@ RUN bin/bash -c "source /opt/ros/noetic/setup.bash && \
                     cd ../.. && \
                     catkin_make"
 
-CMD ["bash","-c","source ~/catkin_ws/devel/setup.bash && roslaunch dobot_magician_driver dobot_magician.launch"]
+RUN echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+
+CMD ["roslaunch dobot_magician_driver dobot_magician.launch"]

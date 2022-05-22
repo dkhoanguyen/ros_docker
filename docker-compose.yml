@@ -42,13 +42,13 @@ services:
       ros:
         ipv4_address: 172.22.0.3
 
-  talker:
-    container_name: talker
+  first_producer:
+    container_name: first_producer
     build:
       context: .
-      dockerfile: images/talker/Dockerfile
+      dockerfile: images/first_producer/Dockerfile
     environment:
-      - "ROS_HOSTNAME=talker"
+      - "ROS_HOSTNAME=first_producer"
       - "ROS_IP=172.22.0.4"
       - "ROS_MASTER_URI=http://core:11311"
     depends_on:
@@ -58,21 +58,37 @@ services:
       ros:
         ipv4_address: 172.22.0.4
 
-  listener:
-    container_name: listener
-    build: 
-      context: .
-      dockerfile: images/listener/Dockerfile
-    environment:
-      - "ROS_HOSTNAME=listener"
-      - "ROS_IP=172.22.0.5"
-      - "ROS_MASTER_URI=http://core:11311"
-    depends_on:
-      - core
-    tty: true
-    networks:
-      ros:
-        ipv4_address: 172.22.0.5
+  # distributor:
+  #   container_name: distributor
+  #   build: 
+  #     context: .
+  #     dockerfile: images/distributor/Dockerfile
+  #   environment:
+  #     - "ROS_HOSTNAME=distributor"
+  #     - "ROS_IP=172.22.0.5"
+  #     - "ROS_MASTER_URI=http://core:11311"
+  #   depends_on:
+  #     - core
+  #   tty: true
+  #   networks:
+  #     ros:
+  #       ipv4_address: 172.22.0.5
+
+  # end_consumer:
+  #   container_name: end_consumer
+  #   build: 
+  #     context: .
+  #     dockerfile: images/end_consumer/Dockerfile
+  #   environment:
+  #     - "ROS_HOSTNAME=end_consumer"
+  #     - "ROS_IP=172.22.0.6"
+  #     - "ROS_MASTER_URI=http://core:11311"
+  #   depends_on:
+  #     - core
+  #   tty: true
+  #   networks:
+  #     ros:
+  #       ipv4_address: 172.22.0.6
 
 
 networks:
