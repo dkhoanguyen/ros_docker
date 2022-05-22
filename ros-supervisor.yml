@@ -24,12 +24,12 @@ services:
       branch: master
       current_commit:
   
-  # distributor:
-  #   - url: https://github.com/dkhoanguyen/simple_ros_docker_test
-  #     branch: master
-  #     current_commit:
+  distributor:
+    - url: https://github.com/dkhoanguyen/simple_ros_docker_test
+      branch: master
+      current_commit:
 
-  # end_consumer:
-  #   - url: https://github.com/dkhoanguyen/simple_ros_docker_test
-  #     branch: master
-  #     current_commit:
+  end_consumer:
+    - url: https://github.com/dkhoanguyen/simple_ros_docker_test
+      branch: master
+      current_commit:
