@@ -14,6 +14,7 @@ RUN bin/bash -c "source /opt/ros/noetic/setup.bash && \
                     git clone https://github.com/dkhoanguyen/simple_ros_docker_test && \
                     cd .. && \
                     catkin_make"
-RUN echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+                    
+COPY ros_entrypoint.sh /ros_entrypoint.sh
 
 CMD ["bash","-c","rosrun simple_ros_docker_test first_producer.py"]
