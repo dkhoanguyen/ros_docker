@@ -16,4 +16,4 @@ RUN bin/bash -c "source /opt/ros/noetic/setup.bash && \
                     catkin_make"
 RUN echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 
-CMD ["rosrun simple_ros_docker_test first_producer.py"]
+CMD ["bash","-c","rosrun simple_ros_docker_test first_producer.py"]
