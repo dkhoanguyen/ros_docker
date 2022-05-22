@@ -36,4 +36,4 @@ RUN bin/bash -c "source /opt/ros/noetic/setup.bash && \
 
 RUN echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 
-CMD ["roslaunch dobot_magician_driver dobot_magician.launch"]
+CMD ["bash","-c","roslaunch dobot_magician_driver dobot_magician.launch"]
