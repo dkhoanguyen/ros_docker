@@ -7,8 +7,6 @@ services:
       context: .
       dockerfile: images/core/Dockerfile
     restart:  always
-    extra_hosts:
-      - khoa:10.10.88.250 # Should only use this during development
     ports:
       - 11311:11311
       - 9090:9090
@@ -30,7 +28,6 @@ services:
       - "ROS_IP=172.22.0.3"
       - "ROS_MASTER_URI=http://core:11311"
     volumes:
-      - /etc/hosts:/tmp/hosts
       - /dev:/dev
     depends_on:
       - core
@@ -52,8 +49,6 @@ services:
       - "ROS_HOSTNAME=talker"
       - "ROS_IP=172.22.0.4"
       - "ROS_MASTER_URI=http://core:11311"
-    volumes:
-      - /etc/hosts:/tmp/hosts
     depends_on:
       - core
     networks:
@@ -69,8 +64,6 @@ services:
       - "ROS_HOSTNAME=listener"
       - "ROS_IP=172.22.0.5"
       - "ROS_MASTER_URI=http://core:11311"
-    volumes:
-      - /etc/hosts:/tmp/hosts
     depends_on:
       - core
     networks:
