@@ -15,21 +15,34 @@ core:
 
 services:
   dobot_magician_driver:
-    - url: https://github.com/gapaul/dobot_magician_driver
-      branch: improvement/improve-driver-robustness-to-hardware-changes
-      current_commit:
+    type: first_producer
+    repos:
+      - url: https://github.com/gapaul/dobot_magician_driver
+        branch: improvement/improve-driver-robustness-to-hardware-changes
+        current_commit:
 
   first_producer:
-    - url: https://github.com/dkhoanguyen/simple_ros_docker_test
-      branch: master
-      current_commit:
-  
+    type: first_producer
+    repos:
+      - url: https://github.com/dkhoanguyen/simple_ros_docker_test
+        branch: master
+        current_commit:
+
   distributor:
-    - url: https://github.com/dkhoanguyen/simple_ros_docker_test
-      branch: master
-      current_commit:
+    type: distributor
+    depends_on:
+      - first_producer
+    repos:
+      - url: https://github.com/dkhoanguyen/simple_ros_docker_test
+        branch: master
+        current_commit:
 
   end_consumer:
-    - url: https://github.com/dkhoanguyen/simple_ros_docker_test
-      branch: master
-      current_commit:
+    type: end_consumer
+    depends_on:
+      - first_producer
+      - distributor
+    repos:
+      - url: https://github.com/dkhoanguyen/simple_ros_docker_test
+        branch: master
+        current_commit:
