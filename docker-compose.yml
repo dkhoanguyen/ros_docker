@@ -68,7 +68,7 @@ services:
       - "ROS_IP=172.22.0.5"
       - "ROS_MASTER_URI=http://core:11311"
     depends_on:
-      - core
+      - first_producer
     tty: true
     networks:
       ros:
@@ -84,7 +84,7 @@ services:
       - "ROS_IP=172.22.0.6"
       - "ROS_MASTER_URI=http://core:11311"
     depends_on:
-      - core
+      - distributor
     tty: true
     networks:
       ros:

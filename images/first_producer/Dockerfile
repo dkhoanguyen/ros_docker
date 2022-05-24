@@ -17,4 +17,6 @@ RUN bin/bash -c "source /opt/ros/noetic/setup.bash && \
                     
 COPY ros_entrypoint.sh /ros_entrypoint.sh
 
-CMD ["bash","-c","rosrun simple_ros_docker_test first_producer.py"]
+# CMD ["bash","-c","rosrun simple_ros_docker_test first_producer.py"]
+CMD [ "bash", "-c", "tail -f /dev/null" ]
+
