@@ -12,19 +12,39 @@ context:
 core:
   enable_bridge: true # Expose all topics through websockets and allows other third parties to subscribe to the websocket path
   enable_master_discovery: true # Enable multi master feature
+  timeout: 5
+  start_instances: 1            # Start one container instance at the same time
 
 services:
   dobot_magician_driver:
-    - url: https://github.com/gapaul/dobot_magician_driver
-      branch: improvement/improve-driver-robustness-to-hardware-changes
-      current_commit:
-  
-  talker:
-    - url: https://github.com/dkhoanguyen/simple_ros_docker_test
-      branch: master
-      current_commit:
-  
-  listener:
-    - url: https://github.com/dkhoanguyen/simple_ros_docker_test
-      branch: master
-      current_commit:
+    type: producer
+    repos:
+      - url: https://github.com/gapaul/dobot_magician_driver
+        branch: improvement/improve-driver-robustness-to-hardware-changes
+        current_commit:
+
+  first_producer:
+    type: producer
+    repos:
+      - url: https://github.com/dkhoanguyen/simple_ros_docker_test
+        branch: master
+        current_commit:
+        
+  distributor:
+    type: distributor
+    depends_on:
+      - first_producer
+    repos:
+      - url: https://github.com/dkhoanguyen/simple_ros_docker_test
+        branch: master
+        current_commit:
+
+  end_consumer:
+    type: consumer
+    depends_on:
+      - first_producer
+      - distributor
+    repos:
+      - url: https://github.com/dkhoanguyen/simple_ros_docker_test
+        branch: master
+        current_commit:
